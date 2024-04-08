@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DatePicker from "@mui/lab/DatePicker";
 
 import {
   Grid,
@@ -54,13 +53,6 @@ const FindReplacement = () => {
     PhoneNumber: "",
     EmploymentStartDate: "",
   });
-
-  const handleDateChange = (date) => {
-    setFormData({
-      ...formData,
-      EmploymentStartDate: date,
-    });
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;

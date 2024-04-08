@@ -17,6 +17,7 @@ import availability from "../assets/availability.png";
 import replace from "../assets/relpace.png";
 import add_shift from "../assets/add_shift.png";
 import add_employee from "../assets/add_employee.png";
+import scan from "../assets/scan.png";
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -84,6 +85,11 @@ export default function HomeComponent() {
       name: "Add an Employee",
       description: "Add an employee to assign them shifts",
     },
+    {
+      id: 8,
+      name: "Scan paper texts",
+      description: "No more finding items on a piece of paper!",
+    },
   ];
 
   const cardImages = [
@@ -95,6 +101,7 @@ export default function HomeComponent() {
     availability,
     replace,
     add_employee,
+    scan,
   ];
 
   return (

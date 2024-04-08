@@ -9,13 +9,11 @@ import TrayUp from "./TrayUp/trayup.js";
 import RTU from "./RTU/rtu.js";
 import AddEmployee from "./AddEmployee/addemployee.js";
 import TextExtract from "./TextExtract/textextract.js";
-import ScannedItems from "./TextExtract/scannedList.js";
 
 function App() {
   return (
     <div>
       <Router>
-        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/">
             <Home />

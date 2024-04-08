@@ -291,7 +291,6 @@ export default function HomeComponent() {
   };
 
   const decreaseCount = (index) => {
-    // Update count for the pastry at the specified index
     setCounts((prevCounts) => {
       const newCounts = [...prevCounts];
       if (newCounts[index] > 0 && !finalized) {
@@ -302,7 +301,6 @@ export default function HomeComponent() {
   };
 
   return (
-    // Apply background image class to the body element
     <div className={classes.backgroundImage}>
       <div style={{ justifyContent: "center" }}>
         <Grid container spacing={5} className={classes.gridContainer}>
@@ -325,16 +323,16 @@ export default function HomeComponent() {
                       <div className="count-section">
                         <button
                           className="count-btn"
-                          onClick={() => decreaseCount(index)} // Pass index to decreaseCount
+                          onClick={() => decreaseCount(index)}
                         >
-                          <RemoveIcon /> {/* Minus icon */}
+                          <RemoveIcon />
                         </button>
                         <p className="count-value">{counts[index]}</p>
                         <button
                           className="count-btn"
-                          onClick={() => increaseCount(index)} // Pass index to increaseCount
+                          onClick={() => increaseCount(index)}
                         >
-                          <AddIcon /> {/* Plus icon */}
+                          <AddIcon />
                         </button>
                       </div>
                     </div>

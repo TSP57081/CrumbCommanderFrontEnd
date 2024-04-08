@@ -225,7 +225,6 @@ const AddAvailability = () => {
   return (
     <div style={{ overflowY: "auto" }}>
       {" "}
-      {/* Add scroll to the entire component */}
       <div className={classes.backgroundImage}>
         <Parallax strength={10} className={classes.loginParallaxContent}>
           <Paper className={classes.parentCard}>
