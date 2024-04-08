@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import backgroundImage from "../assets/background.png";
 import "./addshift.css";
 import dotenv from "dotenv";
+import AWS from "aws-sdk/dist/aws-sdk-react-native";
 
 const useStyles = makeStyles((theme) => ({
   parentCard: {
@@ -50,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   dotenv.config();
+  AWS.config.update({
+    region: "us-east-1",
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+    sessionToken: process.env.REACT_APP_SESSION_TOKEN,
+  });
   const classes = useStyles();
   const [formData, setFormData] = useState({
     EmployeeID: "",
@@ -124,6 +131,33 @@ const Login = () => {
         );
         if (response.status === 200) {
           toast.success("Shift added successfully");
+          console.log(`Emp ID: ${formData.EmployeeID}`);
+          const emailResponse = await fetch(
+            `${process.env.REACT_APP_BASE_URL}get_email_by_id?UserID=${formData.EmployeeID}`
+          );
+          const data = await emailResponse.json();
+          const email = data.email;
+          const lambda = new AWS.Lambda();
+
+          console.log(`Emp Email: ${email}`);
+
+          const emailText = `You have a new shift on ${date} from ${startTime} to ${endTime}!`;
+          const params = {
+            FunctionName: process.env.REACT_APP_LAMBDA_ARN,
+            Payload: JSON.stringify({
+              subject: "Shift Update!",
+              recipient: email,
+              body: emailText,
+            }),
+          };
+
+          lambda.invoke(params, (err, data) => {
+            if (err) {
+              console.error("Error invoking Lambda function:", err);
+            } else {
+              console.log("Lambda function response:", data);
+            }
+          });
         } else {
           toast.error("Couldn't add shift");
         }
