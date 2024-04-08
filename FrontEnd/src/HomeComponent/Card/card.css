@@ -1,0 +1,15 @@
+.name-tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-sec {
+    font-size: large;
+    font-weight: 1000;
+    font-weight: bold;
+}
+
+.card-text {
+    margin-top: 8px;
+    font-weight: 600;
+}

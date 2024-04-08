@@ -1,0 +1,22 @@
+ .login-content {
+    align-items: center;
+    justify-content: center;
+}
+
+.login-button {
+    background-color: #fdb960 !important;
+    color: #000 !important;
+    font-weight: bold;
+    width: 100% !important;
+    margin-top: 16px !important;
+    height: 50px !important
+}
+
+.timetable {
+    background-color: #fdb960 !important;
+    color: #000 !important;
+    font-weight: bold;
+    width: 100% !important;
+    margin-top: 16px !important;
+    height: 50px !important
+}

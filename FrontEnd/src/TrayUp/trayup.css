@@ -1,0 +1,40 @@
+.name-tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-sec {
+    font-size: large;
+    font-weight: 1000;
+    font-weight: bold;
+}
+
+.card-text {
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.count-value {
+    font-weight:bolder;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.count-btn {
+    font-weight: 1000;
+    font-size: larger;
+    font-weight: bolder;
+    height: 50px;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC1C0;
+    border-radius: 20%;
+}
+
+.count-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
