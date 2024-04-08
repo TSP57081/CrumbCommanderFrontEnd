@@ -14,8 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backgroundImage from "../assets/background.png";
 import "./findreplacement.css";
-import { CONFIG } from "../config.js";
 import DialogBox from "../DialogBox.js";
+import dotenv from "dotenv";
 
 const useStyles = makeStyles((theme) => ({
   parentCard: {
@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FindReplacement = () => {
+  dotenv.config();
   const classes = useStyles();
   const [formData, setFormData] = useState({
     StartTimeHour: "",
@@ -97,7 +98,7 @@ const FindReplacement = () => {
 
     try {
       const response = await fetch(
-        `${CONFIG.BASE_PATH}find_available_employees`,
+        `${process.env.REACT_APP_BASE_URL}find_available_employees`,
         {
           method: "POST",
           headers: {

@@ -3,15 +3,18 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useEffect, useState } from "react";
-import { CONFIG } from "../config.js";
+import dotenv from "dotenv";
 
 const WeeklySchedule = () => {
+  dotenv.config();
   const [shifts, setShifts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const temp_shifts = [];
-      const response = await fetch(`${CONFIG.BASE_PATH}get_all_shifts`);
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}get_all_shifts`
+      );
       if (response.ok) {
         const data = await response.json();
         const shiftArray = data.shifts;

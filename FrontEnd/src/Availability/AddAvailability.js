@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backgroundImage from "../assets/background.png";
 import "./addavailability.css";
-import { CONFIG } from "../config.js";
+import dotenv from "dotenv";
 
 const useStyles = makeStyles((theme) => ({
   parentCard: {
@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddAvailability = () => {
+  dotenv.config();
   const classes = useStyles();
   const [formData, setFormData] = useState({
     EmployeeID: "",
@@ -144,13 +145,16 @@ const AddAvailability = () => {
 
       const uploadShift = async () => {
         try {
-          const response = await fetch(`${CONFIG.BASE_PATH}add_availability`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(shiftData),
-          });
+          const response = await fetch(
+            `${process.env.REACT_APP_BASE_URL}add_availability`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(shiftData),
+            }
+          );
 
           if (response.ok) {
             toast.success("Availability added successfully");

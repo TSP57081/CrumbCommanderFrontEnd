@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backgroundImage from "../assets/background.png";
 import "./addemployee.css";
-import { CONFIG } from "../config.js";
+import dotenv from "dotenv";
 
 const useStyles = makeStyles((theme) => ({
   parentCard: {
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FindReplacement = () => {
+  dotenv.config();
   const classes = useStyles();
   const [formData, setFormData] = useState({
     FirstName: "",
@@ -82,13 +83,16 @@ const FindReplacement = () => {
     };
 
     try {
-      const employeeResponse = await fetch(`${CONFIG.BASE_PATH}add_employee`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(employeeData),
-      });
+      const employeeResponse = await fetch(
+        `${process.env.REACT_APP_BASE_URL}add_employee`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(employeeData),
+        }
+      );
 
       if (employeeResponse.status === 200) {
         toast.success("Employee added successfully");

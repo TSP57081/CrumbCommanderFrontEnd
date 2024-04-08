@@ -13,7 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import backgroundImage from "../assets/background.png";
 import "./addshift.css";
-import { CONFIG } from "../config.js";
+import dotenv from "dotenv";
 
 const useStyles = makeStyles((theme) => ({
   parentCard: {
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = () => {
+  dotenv.config();
   const classes = useStyles();
   const [formData, setFormData] = useState({
     EmployeeID: "",
@@ -111,13 +112,16 @@ const Login = () => {
       };
 
       const uploadShift = async () => {
-        const response = await fetch(`${CONFIG.BASE_PATH}add_employee_shift`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(shiftData),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}add_employee_shift`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(shiftData),
+          }
+        );
         if (response.status === 200) {
           toast.success("Shift added successfully");
         } else {
